@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <input id="email" type="text" placeholder=email>
+    <input id="password" type="text" placeholder=password>
+    <button id="btn">đăng nhập</button>
+    <button id="sign-up">dang ky</button>
+</body>
+<script>
+    $("#btn").click(() => {
+        var email = $("#email").val()
+        var password = $("#password").val()
+        if (email && password) {
+            return $.ajax({
+                url: "/user/login",
+                method: "POST",
+                data: {
+                    email: email,
+                    password: password
+                }
+            }).then((data) => {
+                if (!data.error) {
+                    alert("ddawng nhaapj thành công")
+                    return window.location.href = "/home"
+                }
+                alert("sai taif khoan hoawc mat khau")
+
+                if (confirm("banj cos muoons dang ky") == true) {
+                    return window.location.href = "/index"
+                }
+
+            }).catch((err) => {
+                alert(err)
+            });
+        }
+        return alert("khoong duoc de trong")
+
+    })
+    $("#sign-up").click(() => {
+        window.location.href = "/sign-up"
+    })
+</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <div class="background">
+        <input id="email " type="text " placeholder=email>
+        <hr>
+        <input id="username " type="text " placeholder=username>
+        <hr>
+        <input id="password " type="text " placeholder=password>
+        <hr>
+        <button type="button" id="btn">Dang ky</button>
+
+    </div>
+
+</body>
+
+<script>
+    $("button").click(() => {
+        var email = $("#email ").val()
+        var username = $("#username ").val()
+        var password = $("#password ").val()
+        $.ajax({
+            // roles: "/admin/",
+            method: "POST ",
+
+            url: "/user/sign-up/",
+
+            data: {
+                username: username,
+                email: email,
+                password: password
+            }
+
+        }).then((data) => {
+            console.dir(data)
+        }).catch((err) => {
+            console.dir(err)
+        });
+    })
+</script>
+
+</html>
